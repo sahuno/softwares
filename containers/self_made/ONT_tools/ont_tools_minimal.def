@@ -23,7 +23,7 @@ From: ubuntu:20.04
     ca-certificates \
     build-essential \
     libncurses-dev \
-    zlib1g
+    libbz2-dev
     #zlib libbz2 liblzma libcurl libcrypto libdeflate libhts3t64
 
     NOW=`date`
