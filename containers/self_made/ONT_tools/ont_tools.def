@@ -2,7 +2,8 @@ Bootstrap: docker
 From: ubuntu:20.04
 
 %labels
-    Maintainer your_name_here
+    Maintainer samuel ahuno
+    Version v0.0.1
 
 %help
     This Singularity container provides Samtools, Oxford Nanopore basecaller Dorado, Python, and Rust.
@@ -28,6 +29,9 @@ From: ubuntu:20.04
     build-essential \
     libffi-dev \
     software-properties-common
+
+    NOW=`date`
+    echo "export NOW=\"${NOW}\"" >> $SINGULARITY_ENVIRONMENT
 
     # Install Samtools
     cd /opt
@@ -78,6 +82,7 @@ From: ubuntu:20.04
 
 %environment
     export PATH="/usr/local/bin:$PATH"
+    export LISTEN_PORT=12345
     # export PATH="$HOME/.cargo/bin:$PATH"
 
 %runscript
