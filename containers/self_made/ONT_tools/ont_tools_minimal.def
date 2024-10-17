@@ -24,7 +24,7 @@ From: ubuntu:20.04
     build-essential \
     libncurses-dev \
     libbz2-dev \
-    liblzma-dev libdeflate-dev libhts3t64 libcrypto++-dev
+    liblzma-dev libdeflate-dev libcrypto++-dev
     #libcurl-dev libcrypto-dev
     #zlib libbz2 liblzma libcurl libcrypto libdeflate libhts3t64
 
