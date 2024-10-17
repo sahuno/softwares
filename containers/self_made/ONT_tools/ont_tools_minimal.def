@@ -23,8 +23,8 @@ From: ubuntu:20.04
     ca-certificates \
     build-essential \
     ncurses \
-    libhts3t64 zlib1g
-    #zlib libbz2 liblzma libcurl libcrypto libdeflate
+    zlib1g
+    #zlib libbz2 liblzma libcurl libcrypto libdeflate libhts3t64
 
     NOW=`date`
     echo "export NOW=\"${NOW}\"" >> $SINGULARITY_ENVIRONMENT
