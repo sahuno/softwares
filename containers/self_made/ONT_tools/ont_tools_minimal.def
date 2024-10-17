@@ -18,11 +18,11 @@ From: ubuntu:20.04
     gcc \
     git \
     make \
-    wget \
+    wget curl \
     ca-certificates \
-    curl \
     build-essential \
-    curses zlib libbz2 liblzma libcurl libcrypto libdeflate
+    curses
+    #zlib libbz2 liblzma libcurl libcrypto libdeflate
 
     NOW=`date`
     echo "export NOW=\"${NOW}\"" >> $SINGULARITY_ENVIRONMENT
