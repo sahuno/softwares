@@ -22,7 +22,7 @@ From: ubuntu:20.04
     curl \
     ca-certificates \
     build-essential \
-    ncurses \
+    libncurses6 \
     zlib1g
     #zlib libbz2 liblzma libcurl libcrypto libdeflate libhts3t64
 
