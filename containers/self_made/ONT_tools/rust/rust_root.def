@@ -1,0 +1,68 @@
+Bootstrap: docker
+From: ubuntu:20.04
+
+%labels
+    Maintainer samuel ahuno
+    Version v0.0.1
+
+%help
+    Singularity for rust and cargo
+
+%post
+    # Install dependencies
+    apt-get update && apt-get install -y \
+    python3 python3-pip \
+    autoconf \
+    automake \
+    build-essential \
+    bzip2 \
+    gcc \
+    git \
+    make \
+    wget curl
+
+
+
+    ### add rust and cargo
+    cd /opt
+    #git clone https://github.com/rust-lang/cargo.git
+    #cd cargo
+    #.configure --prefix=/usr/local
+    #make
+    # make install
+  
+    curl https://sh.rustup.rs -sSf | sh -s -- -y
+    . /root/.cargo/env
+    #export PATH="/root/.cargo/bin:$PATH"
+    
+    
+    #echo 'export PATH=/root/.cargo/bin/:$PATH' >> $SINGULARITY_ENVIRONMENT
+    #echo "done exporting"
+    
+    #verify cargo installation
+    #rustc --version
+    #cargo --version 
+    echo "done testing in %post"
+
+    #mv /root/.cargo /usr/local/.cargo
+    #echo "~/.cargo"
+    #. /usr/local/.cargo/env
+    #ls -thal /usr/local/.cargo/bin
+    #ln -s /usr/local/.cargo/bin/ /usr/local/bin/ 
+    
+    git clone https://github.com/nanoporetech/modkit.git
+    cd modkit
+    cargo install --path .
+    modkit --help   
+%environment
+    export PATH="/usr/local/bin:$PATH"
+    export LISTEN_PORT=12345
+    export PATH="/root/.cargo/bin:$PATH"
+%runscript
+    echo "This is a Singularity container for rust Cargo"
+    exec "$@"
+
+%test
+    # Test if Rust is installed correctly
+    #cargo --version
+    rustc --version

@@ -30,25 +30,35 @@ From: ubuntu:20.04
     #.configure --prefix=/usr/local
     #make
     # make install
+  
     curl https://sh.rustup.rs -sSf | sh -s -- -y
-    . "$HOME/.cargo/env"
-    echo 'export PATH=$HOME/.cargo/bin/:$PATH' >> $SINGULARITY_ENVIRONMENT
-    echo "done exporting"
+    . /root/.cargo/env
+    export PATH="/root/.cargo/bin:$PATH"
+    
+    
+    #echo 'export PATH=/root/.cargo/bin/:$PATH' >> $SINGULARITY_ENVIRONMENT
+    #echo "done exporting"
+    
+    #verify cargo installation
+    #rustc --version
+    #cargo --version 
+    echo "done testing in %post"
 
-    #mv $HOME/.cargo /usr/local/.cargo
-    #echo "$HOME/.cargo"
-    #. "/usr/local/.cargo/env"
+    #mv /root/.cargo /usr/local/.cargo
+    #echo "~/.cargo"
+    #. /usr/local/.cargo/env
+    #ls -thal /usr/local/.cargo/bin
     #ln -s /usr/local/.cargo/bin/ /usr/local/bin/ 
 
 %environment
     export PATH="/usr/local/bin:$PATH"
     export LISTEN_PORT=12345
-    export PATH="$HOME/.cargo/bin:$PATH"
+    export PATH="/root/.cargo/bin:$PATH"
 %runscript
     echo "This is a Singularity container for rust Cargo"
     exec "$@"
 
 %test
     # Test if Rust is installed correctly
-   #cargo --version
-   #rustc --version
+    #cargo --version
+    rustc --version
