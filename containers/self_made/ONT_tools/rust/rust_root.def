@@ -24,7 +24,7 @@ From: ubuntu:20.04
 
 
     ### add rust and cargo
-    cd /opt
+    #cd /opt
     #git clone https://github.com/rust-lang/cargo.git
     #cd cargo
     #.configure --prefix=/usr/local
@@ -42,7 +42,7 @@ From: ubuntu:20.04
     #verify cargo installation
     #rustc --version
     #cargo --version 
-    echo "done testing in %post"
+    #echo "done testing in %post"
 
     #mv /root/.cargo /usr/local/.cargo
     #echo "~/.cargo"
@@ -50,10 +50,10 @@ From: ubuntu:20.04
     #ls -thal /usr/local/.cargo/bin
     #ln -s /usr/local/.cargo/bin/ /usr/local/bin/ 
     
-    git clone https://github.com/nanoporetech/modkit.git
-    cd modkit
-    cargo install --path .
-    modkit --help   
+    #git clone https://github.com/nanoporetech/modkit.git
+    #cd modkit
+    #cargo install --path .
+    #modkit --help   
 %environment
     export PATH="/usr/local/bin:$PATH"
     export LISTEN_PORT=12345
