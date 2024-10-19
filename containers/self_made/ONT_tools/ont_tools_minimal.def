@@ -51,23 +51,30 @@ From: ubuntu:20.04
 
     # # Create symbolic link for Dorado in PATH
     ln -s /usr/local/dorado/bin/dorado /usr/local/bin/dorado
-    ### add rust and cargo
-    #cd /opt
-    curl https://sh.rustup.rs -sSf | sh -s -- -y
-    . /root/.cargo/env
-   
-   #install modkit whih depends on cargo/rust    
-    git clone https:://github.com/nanoporetech/modkit.git
-    cd modkit
-    cargo install --path .
-    #install pycoQC for ont QC
+    
+   #install pycoQC for ont QC
     pip install pycoQC
     #mv 
+    
+    #install rustc
+    curl https://sh.rustup.rs -sSf | sh -s -- -y
+    . ~/.cargo/env
+    
+    #install modkit
+    cd /opt
+    git clone https://github.com/nanoporetech/modkit.git
+    cd modkit
+    cargo install --path . 
+    
+   #move cargo binaries to /usr/local/
+    mv /root/.cargo /usr/local/.cargo
+    ls -thal /usr/local/.cargo/bin
+    ln -s  /usr/local/.cargo/bin/ /usr/local/bin/
 
 %environment
     export PATH="/usr/local/bin:$PATH"
     export LISTEN_PORT=12345
-    export PATH='/root/.cargo/bin:$PATH'
+    export PATH="/usr/local/.cargo/bin:$PATH"
 
 %runscript
     echo "This is a Singularity container for Samtools, Oxford Nanopore basecaller Dorado, Python, and Rust."
@@ -85,3 +92,5 @@ From: ubuntu:20.04
 
     # Test if Rust is installed correctly
     rustc --version
+    cargo --version
+    modkit --version
