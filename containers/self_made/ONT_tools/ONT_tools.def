@@ -65,11 +65,19 @@ From: ubuntu:20.04
     git clone https://github.com/nanoporetech/modkit.git
     cd modkit
     cargo install --path . 
+    rm -rf modkit
     
    #move cargo binaries to /usr/local/
     mv /root/.cargo /usr/local/.cargo
     ls -thal /usr/local/.cargo/bin
-    ln -s  /usr/local/.cargo/bin/ /usr/local/bin/
+    ln -s /usr/local/.cargo/bin/ /usr/local/bin/
+
+    #install longphase for phasing methylation
+    wget https://github.com/twolinin/longphase/releases/download/v1.7.3/longphase_linux-x64.tar.xz
+    tar -xJf longphase_linux-x64.tar.xz
+
+    mv longphase_linux-x64 /usr/local/bin/longphase
+    chmod +x /usr/local/bin/longphase
 
 %environment
     export PATH="/usr/local/bin:$PATH"
@@ -94,3 +102,4 @@ From: ubuntu:20.04
     rustc --version
     cargo --version
     modkit --version
+    longphase --version
