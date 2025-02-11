@@ -2,6 +2,13 @@
 
 # Add labels
 #LABEL maintainer="samuel ahuno" version="v0.0.1"
+
+#how to run
+#1. build image
+# docker build -t numpyroml .
+
+#2. tag:
+# docker tag <image_ID> sahuno/<image_name>:[tag]
       
 FROM nvcr.io/nvidia/jax:25.01-py3
 RUN python --version

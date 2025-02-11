@@ -1,4 +1,7 @@
 ##ML with probablistic programming 
+#how to run 
+# docker build -t pyroml .
+
 FROM nvcr.io/nvidia/pytorch:25.01-py3
 RUN python --version
 RUN pip3 --version
