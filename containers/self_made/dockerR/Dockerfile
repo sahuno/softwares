@@ -1,8 +1,9 @@
 # Step 1: import official R base image
 FROM rocker/r-ver
+FROM rocker/rstudio
 FROM bioconductor/bioconductor_docker:devel
-
-# docker build -t rdocker 
+#FROM rocker/rstudio
+# docker build -t rdocker .
 
 
 #step 1: create dir to work
@@ -34,4 +35,12 @@ RUN R -e 'BiocManager::install(c("DESeq2", "EnhancedVolcano", "plyranges","Genom
 
 RUN R -e 'BiocManager::install(c("methylKit", "edgeR"), ask = F)'
 RUN R -e  'install.packages(c("janitor"), dependencies=TRUE,ask = FALSE)'
+
+# install.packages("devtools")
+RUN R -e 'install.packages(c("devtools","remotes"), dependencies=TRUE, repos="http://cran.rstudio.com/")'
+#RUN R -e 'install.packages(c("devtools","remotes"), dependencies=TRUE, repos="http://cran.rstudio.com/");library(devtools);devtools::install_github("fstPackage/fst", ref = "develop")'
+RUN R -e 'remotes::install_github("fstPackage/fst", ref = "develop")'
+RUN R -e 'remotes::install_github("mskilab/gUtils")'
+RUN R -e 'install.packages(c("optparse","entropy","factoextra","ggbiplot","RColorBrewer", "cowplot", "NbClust", "ggnewscale", "ggfortify", "ggrepel", "pheatmap", "magrittr", "viridis", "data.table"), dependencies=TRUE, ask = FALSE)'
+
 
